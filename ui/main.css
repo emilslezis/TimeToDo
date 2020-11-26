@@ -1,6 +1,7 @@
 @import 'resset.css';
 body{
     background-color: #393E41;
+    font-family: 'Raleway', sans-serif;
 }
 #tabs .tab{
     display: inline-block;
@@ -50,5 +51,35 @@ body{
     background-color: #D3D0CB;
     height: 100%;
 }
+#upper_part{
 
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    
 
+}
+.month_year{
+
+    display: flex;
+    align-items: center;
+
+}
+.month_year p{
+    margin: 10px;
+}
+
+#lower_part{
+
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+#lower_part td ,th{
+
+    padding: 5px;
+    text-align: center;
+
+}
