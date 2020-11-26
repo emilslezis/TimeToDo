@@ -3,17 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Time to do</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="main.css">
     <link rel="icon" href="favicon.ico?" type="image/x-icon">
     <script src="eel.js"></script>
 </head>
 <body>
     <div id="tabs">
-        <div class="tabContent">1</div>
-        <div class="tabContent">2</div>
+        <div class="tabContent">
+            <div class="inner_content">
+                1
+            </div>
+        </div>
+        <div class="tabContent">
+            <div class="inner_content">
+                2
+            </div>
+        </div>
         <div class="selector">
-            <div class="tab whiteborder">Time</div>
-            <div class="tab">Callendar</div>
+            <div class="tab whiteborder" id="first_tab">Time</div>
+            <div class="tab" id='second_tab'>Callendar</div>
         </div>
     </div>    
     <script src="animations.js"></script>
