@@ -2,6 +2,7 @@
 body{
     background-color: #393E41;
     font-family: 'Raleway', sans-serif;
+    cursor: context-menu;
 }
 #tabs .tab{
     display: inline-block;
@@ -55,7 +56,8 @@ body{
 
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 125px;
+    font-size: 20px;
     
 
 }
@@ -75,11 +77,33 @@ body{
     justify-content: center;
     margin-top: 30px;
     font-size: 20px;
+    color: #1E2019;
 }
 
 #lower_part td ,th{
 
     padding: 5px;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
 
+}
+
+.sat{
+    color: #393E41;
+}
+.sun{
+    color: #D4AD21;
+}
+thead tr td{
+    font-weight: 700;
+    padding-bottom: 5px;
+    font-family: 'Raleway', sans-serif;
+}
+tbody tr td:hover{
+    border: 1px solid black;
+}
+.today{
+    background-color: #393E41;
+    color: #D3D0CB;
 }

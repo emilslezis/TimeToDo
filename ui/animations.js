@@ -1,10 +1,12 @@
 var tab;
 var tabContent;
+var date = new Date();
 
 window.onload = function(){
 	tabContent = document.getElementsByClassName('tabContent');
 	tab = document.getElementsByClassName('tab');
 	hideTabsContent(1);	
+	displayCurrentDate(date);
 }
 
 function hideTabsContent(a){
@@ -34,4 +36,11 @@ function showTabsContent(b){
 		tabContent[b].classList.remove('hide');
 		tabContent[b].classList.add('show');
 	}
+}
+
+function displayCurrentDate(date){
+	year = date.getFullYear()
+	month = date.getMonth()
+	document.getElementById('year').innerHTML = year;
+	document.getElementById('month').innerHTML = month+1;	
 }
