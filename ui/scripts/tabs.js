@@ -1,11 +1,11 @@
 var tab;
 var tabContent;
 
-window.onload = function(){
-	tabContent = document.getElementsByClassName('tabContent');
-	tab = document.getElementsByClassName('tab');
-	hideTabsContent(1);
-}
+
+tabContent = document.getElementsByClassName('tabContent');
+tab = document.getElementsByClassName('tab');
+hideTabsContent(1);
+
 
 function hideTabsContent(a){
 	for(var i = a; i < tabContent.length; i++){

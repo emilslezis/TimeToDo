@@ -4,13 +4,23 @@ var year = date.getFullYear();
 var today = date.getDate();
 var months = ['January', 'February', 'March', 'April', 'May', 'Juny', 'Jully', 'August', 'September', 'October', 'November', 'December'];
 
+var now_year = year;
+var now_month = month;
+
+window.onload = function(){
+    first_day = new Date(year, month, 1);
+    f_day = first_day.getDay();
+
+    Generate_Day_Hash(f_day, year, month)
+}
 function Callendar_Startup(){ 
     displayCurrentDate(date);
-    Generate_tile_numbers(year, month);
+    Generate_tile_numbers(now_year, now_month);
 }
 
 function Click_Event(id){
     Add_Outline(id);
+    Generate_Day_Hash(id, year, month);
 }
 
 function Add_Outline(id){
@@ -27,10 +37,12 @@ function displayCurrentDate(date){
     document.getElementById('month').innerHTML = gui_month;
 }
 function Take_Date_Back(){
-    month--
+    month--;
+    now_month--;
     if(month<0){
         month = 11;
         year--;
+        now_year--;
         
     }
     gui_month = months[month]
@@ -41,10 +53,12 @@ function Take_Date_Back(){
     Generate_tile_numbers(year, month);
 }
 function Take_Date_Forward(){
-    month++
+    month++;
+    now_month++;
     if(month>11){
         month = 0;
         year++;
+        now_year++;
     }
     gui_month = months[month]
     document.getElementById('month').innerHTML = gui_month;
@@ -99,4 +113,8 @@ function Resset_disabled_tiles(){
         document.getElementById(i).disabled = false;
     }
 
+}
+function Generate_Day_Hash(id, now_year, now_month){
+    hash = 'd'.concat(now_year, now_month+1, id-1);
+    document.getElementById('first_tab').innerHTML = hash;
 }
