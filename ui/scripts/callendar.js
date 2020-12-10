@@ -51,9 +51,13 @@ function Take_Date_Back(){
     document.getElementById('year').innerHTML = year;
 
     f_day = new Date(now_year, now_month, 1).getDay();
+    if(f_day==0){
+        f_day = 7
+    }
+    Generate_Day_Hash(f_day, now_year, now_month);
+
     Resset_disabled_tiles();
     Generate_tile_numbers(year, month);
-    Generate_Day_Hash(f_day, now_year, now_month);
 }
 function Take_Date_Forward(){
     month++;
@@ -72,8 +76,11 @@ function Take_Date_Forward(){
     Resset_disabled_tiles();
     Generate_tile_numbers(year, month);
 
-    f_day = new Date(now_year, now_month, 1).getDay();
-    Generate_Day_Hash(f_day, now_year, now_month);
+    f_day = new Date(year, month, 1).getDay();
+    if(f_day==0){
+        f_day = 7
+    }
+    Generate_Day_Hash(f_day, year, month);
 }
 function Generate_tile_numbers(year, month){
     first_day = new Date(year, month, 1);
@@ -123,6 +130,6 @@ function Resset_disabled_tiles(){
 
 }
 function Generate_Day_Hash(id, now_year, now_month){
-    hash = 'd'.concat(now_year, now_month+1, id-1);
+    hash = 'y'.concat(now_year,'m', now_month+1,'d', id);
     document.getElementById('first_tab').innerHTML = hash;
 }
