@@ -10,12 +10,20 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
-<body>
+<body oncontextmenu="return false;">
     <div id="tabs">
-        <div class="tabContent" id="first_tab">
-            1
-        </div>
-        <div class="tabContent callender">
+        <section class="tabContent" id="first_tab">
+            <div class="list" id='list_content' style="height: 90%;">
+                
+            </div>
+            <div class="add_item">
+                <form id="input_form" name="input_form" onsubmit="Add_New_Item()">
+                    <input type="text" placeholder="Add asigment" id="inp_text" name="inp_text" autocomplete="off">
+                    <input type="submit" value="+">
+                </form>
+            </div>
+        </section>
+        <section class="tabContent callender">
             <section class="callendar">
                 <div class="title">
                     <button class="arrow" id="date_back" onclick="Take_Date_Back()"><img src="images/arrow_left.png" alt="arrow"></button>
@@ -97,7 +105,7 @@
                     </table>
                 </div>
             </section>
-        </div>
+        </section>
         <div class="selector">
             <div class="tab whiteborder" id="first_tab">Time</div>
             <div class="tab" id='second_tab'>Callendar</div>

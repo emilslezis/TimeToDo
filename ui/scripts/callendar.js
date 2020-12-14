@@ -11,16 +11,18 @@ window.onload = function(){
     first_day = new Date(now_year, now_month, 1);
     f_day = first_day.getDay();
 
-    Generate_Day_Hash(f_day, year, month)
+    hash = Generate_Day_Hash(f_day, year, month);
+    read(hash);
 
-    Resset_disabled_tiles()
+    Resset_disabled_tiles();
     displayCurrentDate(date);
     Generate_tile_numbers(now_year, now_month);
 }
 
 function Click_Event(id){
     Add_Outline(id);
-    Generate_Day_Hash(id, year, month);
+    hash = Generate_Day_Hash(id, year, month);
+    read(hash);
 }
 
 function Add_Outline(id){
@@ -30,6 +32,7 @@ function Add_Outline(id){
     document.getElementById(id).classList.remove('tile');
     document.getElementById(id).classList.add('active_tile');
     window.old_value = id;
+
 }
 function displayCurrentDate(date){    
     document.getElementById('year').innerHTML = year;
@@ -54,7 +57,8 @@ function Take_Date_Back(){
     if(f_day==0){
         f_day = 7
     }
-    Generate_Day_Hash(f_day, now_year, now_month);
+    hash = Generate_Day_Hash(f_day, now_year, now_month);
+    read(hash);
 
     Resset_disabled_tiles();
     Generate_tile_numbers(year, month);
@@ -80,7 +84,9 @@ function Take_Date_Forward(){
     if(f_day==0){
         f_day = 7
     }
-    Generate_Day_Hash(f_day, year, month);
+    hash = Generate_Day_Hash(f_day, year, month);
+    read(hash);
+
 }
 function Generate_tile_numbers(year, month){
     first_day = new Date(year, month, 1);
@@ -130,6 +136,33 @@ function Resset_disabled_tiles(){
 
 }
 function Generate_Day_Hash(id, now_year, now_month){
-    hash = 'y'.concat(now_year,'m', now_month+1,'d', id);
-    document.getElementById('first_tab').innerHTML = hash;
+    var hash = 'y'.concat(now_year,'m', now_month+1,'d', id);
+    document.getElementById('list_content').innerHTML = hash;
+    return hash;
+}
+function Add_New_Item(){
+    let formData = new FormData(input_form);
+    var n_todo = formData.get('inp_text');
+    eel.main(hash, 'w', n_todo);
+
+    return false;
+
+}
+
+async function read(hash) {
+    // Inside a function marked 'async' we can use the 'await' keyword.
+      
+    let n = await eel.main(hash, 'r', 'None')(); // Must prefix call with 'await', otherwise it's the same syntax
+    if(n==false){
+        document.getElementById('list_content').innerHTML = 'Nothing planned yet! Click + to add something right now';
+    }else{
+        stuff = Array.from(n)
+        document.getElementById('list_content').innerHTML = stuff[0];
+        for (let i = 1; i < stuff.length; i++) {
+            var node = document.createElement("P");
+            var textnode = document.createTextNode(stuff[i]);
+            node.appendChild(textnode);
+            document.getElementById('list_content').appendChild(node); 
+        }    
+    }
 }

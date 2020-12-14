@@ -1,7 +1,6 @@
 var tab;
 var tabContent;
 
-
 tabContent = document.getElementsByClassName('tabContent');
 tab = document.getElementsByClassName('tab');
 hideTabsContent(1);
