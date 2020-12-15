@@ -1,13 +1,13 @@
 # Import needed modules
 import eel
 
-def FT_Write_Data(hashy, content):
+def FT_Write_Data(hashy, content): # Writting data for the first time
     with open('data.txt', 'a+', newline='') as dataFile:
         data =[hashy,str(content),'\n']
         out_data = '-'.join(data)
         dataFile.write(out_data)
 
-def OT_Write_Data(hashy, content):
+def OT_Write_Data(hashy, content): # Other than first time writting data
 
     d_row = Read_Needed_Row(hashy)
     st_data = '-'.join(d_row)
@@ -44,6 +44,17 @@ def Return_value(hashy):
         element = data[1:]
         element.pop()
         return(element)
+
+@eel.expose # Function is exposed to JavaScript by eel
+def last_visit(hashy, action):
+    if str(action)=='w':
+        with open('last_visit.txt', 'w') as dataFile:
+            dataFile.write(str(hashy))
+    elif str(action)=='r':
+        with open('last_visit.txt', 'r') as dataFile:
+            return dataFile.read()
+    else:
+        print('Penetration error occured! Action is not definned!')
 
 @eel.expose # Function is exposed to JavaScript by eel
 def main(hashy, action, content):

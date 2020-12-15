@@ -11,18 +11,24 @@ window.onload = function(){
     first_day = new Date(now_year, now_month, 1);
     f_day = first_day.getDay();
 
+    n_id=Continue_last_Visit(f_day, 'r');
+
+
     hash = Generate_Day_Hash(f_day, year, month);
     read(hash);
 
     Resset_disabled_tiles();
     displayCurrentDate(date);
     Generate_tile_numbers(now_year, now_month);
+
+    Click_Event(n_id);
 }
 
 function Click_Event(id){
-    Add_Outline(id);
+    Add_Outline(id)
     hash = Generate_Day_Hash(id, year, month);
     read(hash);
+    //Continue_last_Visit(id, 'w');
 }
 
 function Add_Outline(id){
@@ -32,6 +38,8 @@ function Add_Outline(id){
     document.getElementById(id).classList.remove('tile');
     document.getElementById(id).classList.add('active_tile');
     window.old_value = id;
+    Continue_last_Visit(id, 'w');
+
 
 }
 function displayCurrentDate(date){    
@@ -105,6 +113,7 @@ function Generate_tile_numbers(year, month){
     document.getElementById(f_day).classList.add('active_tile');
     
     window.old_value = f_day;
+    Continue_last_Visit(window.old_value, 'w');
     
     var x = 0
     for (let i = 1; i < f_day; i++) {
@@ -147,6 +156,13 @@ function Add_New_Item(){
 
     return false;
 
+}
+
+async function Continue_last_Visit(hash, action) {
+    let n = await eel.last_visit(hash, action)();
+    if(action=='r'){
+        Click_Event(n);
+    }
 }
 
 async function read(hash) {
